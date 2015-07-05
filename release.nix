@@ -86,6 +86,8 @@ rec {
           pythonPackages.hetzner
           libcloud
           pythonPackages.sqlite3
+	  pythonPackages.linode
+	  pythonPackages.pexpect
         ];
 
       # For "nix-build --run-env".

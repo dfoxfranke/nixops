@@ -32,6 +32,7 @@ import nixops.resources.gce_http_health_check
 import nixops.resources.gce_target_pool
 import nixops.resources.gce_forwarding_rule
 import nixops.resources.gse_bucket
+import nixops.resources.linode_stackscript
 from nixops.nix_expr import RawValue, Function, nixmerge, py2nix
 import re
 from datetime import datetime
@@ -400,6 +401,9 @@ class Deployment(object):
             defn = nixops.resources.gse_bucket.GSEBucketDefinition(x)
             self.definitions[defn.name] = defn
 
+        for x in res.find("attr[@name='linodeStackScripts']/attrs").findall("attr"):
+            defn = nixops.resources.linode_stackscript.LinodeStackScriptDefinition(x)
+            self.definitions[defn.name] = defn
 
     def evaluate_option_value(self, machine_name, option_name, xml=False, include_physical=False):
         """Evaluate a single option of a single machine in the deployment specification."""

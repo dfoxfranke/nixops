@@ -95,6 +95,8 @@ rec {
   resources.gseBuckets = evalResources ./gse-bucket.nix (zipAttrs resourcesByType.gseBuckets or []);
   resources.gceImages = evalResources ./gce-image.nix (gce_default_bootstrap_images // ( zipAttrs resourcesByType.gceImages  or []) );
 
+  resources.linodeStackScripts = evalResources ./linode-stackscript.nix (zipAttrs resourcesByType.linodeStackScripts or []);
+
   gce_deployments = flip filterAttrs nodes
                       ( n: v: let dc = (scrubOptionValue v).config.deployment; in dc.targetEnv == "gce" );
 

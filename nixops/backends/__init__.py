@@ -453,7 +453,8 @@ def create_state(depl, type, name, id):
               nixops.resources.gce_http_health_check.GCEHTTPHealthCheckState,
               nixops.resources.gce_target_pool.GCETargetPoolState,
               nixops.resources.gce_forwarding_rule.GCEForwardingRuleState,
-              nixops.resources.gse_bucket.GSEBucketState
+              nixops.resources.gse_bucket.GSEBucketState,
+              nixops.resources.linode_stackscript.LinodeStackScriptState
               ]:
         if type == i.get_type():
             return i(depl, name, id)
